@@ -2724,16 +2724,6 @@ void CGetSetOptions::SetOpenToGroupByActiveExe(int val)
 	SetProfileLong(_T("OpenToGroupByActiveExe"), val);
 }
 
-BOOL CGetSetOptions::GetShowStartupMessage()
-{
-	return GetProfileLong(_T("ShowStartupMessage"), TRUE);
-}
-
-void CGetSetOptions::SetShowStartupMessage(int val)
-{
-	SetProfileLong(_T("ShowStartupMessage"), val);
-}
-
 CString CGetSetOptions::GetCopyScriptsXml()
 {
 	return GetProfileString("CopyScriptsXml", "");

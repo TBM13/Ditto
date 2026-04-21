@@ -580,7 +580,6 @@ public:
 	afx_msg void OnUpdateSpecialpasteSlugify(CCmdUI *pCmdUI);
 	afx_msg void OnSpecialpasteTogglecase();
 	afx_msg void OnUpdateSpecialpasteTogglecase(CCmdUI *pCmdUI);
-	afx_msg void OnFirstShowstartupmessage();
 	afx_msg void CQPasteWnd::OnFirstBackupDb();
 	afx_msg void CQPasteWnd::OnFirstRestoreDb();
 	afx_msg void OnMenuDeleteallnonusedclips();

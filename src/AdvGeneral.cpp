@@ -105,7 +105,6 @@ END_MESSAGE_MAP()
 #define SETTING_REGEX_FILTERING_BY_PROCESS_NAME_14 56
 #define SETTING_REGEX_FILTERING_BY_PROCESS_NAME_15 57
 
-#define SETTING_SHOW_STARTUP_MESSAGE 58
 #define SETTING_TOOLTIP_TIMEOUT 59
 #define SETTING_SELECTED_INDEX 60
 #define SETTING_CLIPBOARD_SAVE_DELAY 61
@@ -311,8 +310,6 @@ BOOL CAdvGeneral::OnInitDialog()
 	AddTrueFalse(pGroupTest, _T("Show indicator a clip has been pasted"), CGetSetOptions::GetShowIfClipWasPasted(), SETTING_SHOW_CLIP_PASTED);
 
 	AddTrueFalse(pGroupTest, _T("Show message that we received a manual sent clip"), CGetSetOptions::GetShowMsgWhenReceivingManualSentClip(), SETTING_SHOW_MSG_WHEN_RECEIVING_MANUAL_SENT_CLIP);	
-
-	AddTrueFalse(pGroupTest, _T("Show startup tooltip message"), CGetSetOptions::GetShowStartupMessage(), SETTING_SHOW_STARTUP_MESSAGE);
 
 	AddTrueFalse(pGroupTest, _T("Show text for first ten copy hot keys"), CGetSetOptions::GetShowTextForFirstTenHotKeys(), SETTING_TEXT_FIRST_TEN);
 	AddTrueFalse(pGroupTest, _T("Show thumbnails(for CF_DIB and PNG types) (could increase memory usage and display speed)"), CGetSetOptions::GetDrawThumbnail(), SETTING_DRAW_THUMBNAILS);
@@ -692,14 +689,6 @@ void CAdvGeneral::OnBnClickedOk()
 				if (wcscmp(pNewValue->bstrVal, pOrigValue->bstrVal) != 0)
 				{
 					CGetSetOptions::SetRegexFilterByProcessName(pNewValue->bstrVal, (((int)prop->GetData()) - SETTING_REGEX_FILTERING_BY_PROCESS_NAME_1));
-				}
-				break;
-
-			case SETTING_SHOW_STARTUP_MESSAGE:
-				if (wcscmp(pNewValue->bstrVal, pOrigValue->bstrVal) != 0)
-				{
-					BOOL val = wcscmp(pNewValue->bstrVal, L"True") == 0;
-					CGetSetOptions::SetShowStartupMessage(val);
 				}
 				break;
 

@@ -581,9 +581,6 @@ public:
 	static BOOL GetOpenToGroupByActiveExe();
 	static void SetOpenToGroupByActiveExe(int val);
 
-	static BOOL GetShowStartupMessage();
-	static void SetShowStartupMessage(int val);
-
 	static CChaiScriptXml m_copyScripts;
 	static CString GetCopyScriptsXml();
 	static void SetCopyScriptsXml(CString val);

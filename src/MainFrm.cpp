@@ -69,8 +69,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_MESSAGE(WM_TRAYNOTIFY, &CMainFrame::OnTrayNotification)
 	ON_MESSAGE(WM_PLAIN_TEXT_PASTE, &CMainFrame::OnPlainTextPaste)
 	ON_WM_WININICHANGE()
-	ON_COMMAND(ID_FIRST_SHOWSTARTUPMESSAGE, &CMainFrame::OnFirstShowstartupmessage)
-	ON_UPDATE_COMMAND_UI(ID_FIRST_SHOWSTARTUPMESSAGE, &CMainFrame::OnUpdateFirstShowstartupmessage)
 	ON_COMMAND(ID_FIRST_BACKUPDATABASE, &CMainFrame::OnFirstBackupdatabase)
 	ON_COMMAND(ID_FIRST_RESTOREDATABASE, &CMainFrame::OnFirstRestoredatabase)
 	ON_MESSAGE(WM_BACKUP_DB, OnBackupDb)
@@ -145,12 +143,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	//removed to keep Ditto from taking focus on start
     //m_trayIcon.MinimiseToTray(this);
-
-	if (CGetSetOptions::GetShowStartupMessage())
-	{
-		CString msg = theApp.m_Language.GetString(_T("StartupMsg"), _T("Ditto is running minimized, Ditto can be opened by hot keys or by clicking the task tray icon"));
-		m_trayIcon.SetBalloonDetails(msg, _T("Ditto"), CTrayNotifyIcon::BalloonStyle::Info, CGetSetOptions::GetBalloonTimeout());
-	}
 
 	theApp.m_Language.UpdateTrayIconRightClickMenu(&m_trayIcon.GetMenu());
 	
@@ -1493,33 +1485,6 @@ void CMainFrame::OnWinIniChange(LPCTSTR lpszSection)
 		SetTimer(SET_WINDOWS_THEME_TIMER, 1000, NULL);
 	}
 }
-
-
-void CMainFrame::OnFirstShowstartupmessage()
-{
-	BOOL existing = CGetSetOptions::GetShowStartupMessage();
-	CGetSetOptions::SetShowStartupMessage(!existing);
-}
-
-
-void CMainFrame::OnUpdateFirstShowstartupmessage(CCmdUI *pCmdUI)
-{
-	if (pCmdUI == NULL ||
-		pCmdUI->m_pMenu == NULL)
-	{
-		return;
-	}
-
-	if (CGetSetOptions::GetShowStartupMessage())
-	{
-		pCmdUI->m_pMenu->CheckMenuItem(ID_FIRST_SHOWSTARTUPMESSAGE, MF_CHECKED);
-	}
-	else
-	{
-		pCmdUI->m_pMenu->CheckMenuItem(ID_FIRST_SHOWSTARTUPMESSAGE, MF_UNCHECKED);
-	}
-}
-
 
 void CMainFrame::OnFirstBackupdatabase()
 {
