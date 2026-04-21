@@ -311,15 +311,11 @@ public:
 	bool DoActionToggleTransparency();
 	bool DoActionIncreaseTransparency();
 	bool DoActionDecreaseTransparency();
-	bool DoActionEmailTo();
-	bool DoActionGmail();
-	bool DoActionEmailToAttachExport();
 	
 	// Refresh scrollbar colors from current theme
 	void RefreshScrollBarColors();
 	// Refresh all theme colors (caption, scrollbars, etc.)
 	void RefreshThemeColors();
-	bool DoActionEmailToAttachContent();
 	bool DoActionSlugify();
 	bool DoCopySelection();
 	bool DoRefreshList();
@@ -588,16 +584,8 @@ public:
 	afx_msg void OnUpdateTransparency35(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateTransparency40(CCmdUI *pCmdUI);
 	afx_msg void OnTransparency35();
-	afx_msg void OnImportEmailto();
-	afx_msg void OnUpdateImportEmailto(CCmdUI *pCmdUI);
-	afx_msg void OnImportGmail();
-	afx_msg void OnUpdateImportGmail(CCmdUI *pCmdUI);
-	afx_msg void OnImportEmailtoasattachment();
-	afx_msg void OnUpdateImportEmailtoasattachment(CCmdUI *pCmdUI);
 	afx_msg void OnSpecialpasteSlugify();
 	afx_msg void OnUpdateSpecialpasteSlugify(CCmdUI *pCmdUI);
-	afx_msg void OnImportEmailContentAttach();
-	afx_msg void OnUpdateImportEmailContentAttach(CCmdUI *pCmdUI);
 	afx_msg void OnSpecialpasteTogglecase();
 	afx_msg void OnUpdateSpecialpasteTogglecase(CCmdUI *pCmdUI);
 	afx_msg void OnFirstShowstartupmessage();
