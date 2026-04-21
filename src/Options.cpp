@@ -2420,29 +2420,6 @@ int CGetSetOptions::GetQRCodeBorderPixels()
 	return GetProfileLong(_T("QRCodeBorderPixels"), 30);
 }
 
-CString	CGetSetOptions::GetTranslateUrl()
-{
-	return GetProfileString(_T("TranslateUrl"), _T("https://translate.google.com/?text=%s"));
-}
-
-CString	CGetSetOptions::GetWebSearchUrl()
-{
-	CString default = _T("https://www.google.com/search?q=%s");
-	CString val = GetProfileString(_T("WebSearchUrl"), default);
-
-	if (val == _T(""))
-	{
-		val = default;
-	}
-
-	return val;
-}
-
-void CGetSetOptions::SetWebSearchUrl(CString val)
-{
-	SetProfileString(_T("WebSearchUrl"), val);
-}
-
 void CGetSetOptions::SetNetworkReadTimeoutMS(int val)
 {
 	SetProfileLong(_T("NetworkReadTimeoutMS"), val);

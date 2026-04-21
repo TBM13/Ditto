@@ -270,8 +270,6 @@ public:
 	bool DoSelectRightSideAndDoCompare();
 	bool DoExportToQRCode();
 	bool DoExportToTextFile();
-	bool DoExportToGoogleTranslate();
-	bool DoExportToWebSearch();
 	bool DoActionGenerateGuid();
 	bool DoExportToBitMapFile();
 	bool DoSaveCurrentClipboard();
@@ -492,8 +490,6 @@ public:
 	afx_msg LRESULT OnNewGroup(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnDeleteId(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnMenuRegularexpressionsearch();
-	afx_msg void OnImportExporttogoogletranslate();
-	afx_msg void OnUpdateImportExporttogoogletranslate(CCmdUI *pCmdUI);
 	afx_msg void OnImportExportclipBitmap();
 	afx_msg void OnUpdateImportExportclipBitmap(CCmdUI *pCmdUI);
 	afx_msg void OnMenuWildcardsearch();
@@ -603,8 +599,6 @@ public:
 	afx_msg void OnUpdateSpecialpasteMultipleImagesVert(CCmdUI* pCmdUI);
 	afx_msg void OnSpecialpasteAsciitextonly();
 	afx_msg void OnUpdateSpecialpasteAsciitextonly(CCmdUI* pCmdUI);
-	afx_msg void OnImportExporttowebsearch();
-	afx_msg void OnUpdateImportExporttowebsearch(CCmdUI* pCmdUI);
 	afx_msg void OnSpecialpastePastenewguid();
 	afx_msg void OnUpdateSpecialpastePastenewguid(CCmdUI* pCmdUI);
 };

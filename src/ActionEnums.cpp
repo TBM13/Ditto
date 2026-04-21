@@ -125,9 +125,7 @@ CString ActionEnums::EnumDescription(ActionEnumValues value)
 	case EXPORT_TO_QR_CODE:
 		val = "Export To QR Code";
 		break;
-	case EXPORT_TO_GOOGLE_TRANSLATE:
-		val = "Export To Google Translate";
-		break;
+
 	case EXPORT_TO_BITMAP_FILE:
 		val = "Export To Image File";
 		break;
@@ -415,9 +413,6 @@ CString ActionEnums::EnumDescription(ActionEnumValues value)
 		break;
 	case PASTE_POSITION_10_PLAIN_TEXT:
 		val = "Paste Position 10 Plain Text Only";
-		break;
-	case EXPORT_TO_WEB_SEARCH:
-		val = "Export To Web Search";
 		break;
 	case GENERATE_GUID:
 		val = "Generate GUID";

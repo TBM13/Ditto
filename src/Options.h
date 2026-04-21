@@ -501,11 +501,6 @@ public:
 	static BOOL GetRegExTextSearch();
 	static void SetRegExTextSearch(BOOL val);
 
-	static CString GetTranslateUrl();
-
-	static CString GetWebSearchUrl();
-	static void SetWebSearchUrl(CString val);
-
 	static void SetNetworkReadTimeoutMS(int val);
 	static int GetNetworkReadTimeoutMS();
 
