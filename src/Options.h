@@ -149,15 +149,6 @@ public:
 	static void SetExpiredEntries(long lVal);
 	static long GetExpiredEntries();
 
-	static void SetTripCopyCount(long lVal);
-	static long GetTripCopyCount();
-
-	static void SetTripPasteCount(long lVal);
-	static long GetTripPasteCount();
-
-	static void SetTripDate(long lDate);
-	static long GetTripDate();
-
 	static void SetTotalCopyCount(long lVal);
 	static long GetTotalCopyCount();
 

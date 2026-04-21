@@ -379,9 +379,6 @@ void CGetSetOptions::ConverSettingsToIni()
 	SetCheckForExpiredEntries(GetCheckForExpiredEntries());
 	SetMaxEntries(GetMaxEntries());
 	SetExpiredEntries(GetExpiredEntries());
-	SetTripCopyCount(GetTripCopyCount());
-	SetTripPasteCount(GetTripPasteCount());
-	SetTripDate(GetTripDate());
 	SetTotalCopyCount(GetTotalCopyCount());
 	SetTotalPasteCount(GetTotalPasteCount());
 	SetTotalDate(GetTotalDate());
@@ -1087,53 +1084,6 @@ void CGetSetOptions::SetExpiredEntries(long lVal)
 long CGetSetOptions::GetExpiredEntries()
 {
 	return GetProfileLong("ExpiredEntries", 5);
-}
-
-void CGetSetOptions::SetTripCopyCount(long lVal)
-{
-	// negative means a relative offset
-	if(lVal < 0)
-		lVal = GetTripCopyCount() - lVal; // add the absolute value
-
-	if(GetTripDate() == 0)
-		SetTripDate(-1);
-
-	SetProfileLong("TripCopies", lVal);
-}
-
-long CGetSetOptions::GetTripCopyCount()
-{
-	return GetProfileLong("TripCopies", 0);
-}
-
-void CGetSetOptions::SetTripPasteCount(long lVal)
-{
-	// negative means a relative offset
-	if(lVal < 0)
-		lVal = GetTripPasteCount() - lVal; // add the absolute value
-
-	if(GetTripDate() == 0)
-		SetTripDate(-1);
-
-	SetProfileLong("TripPastes", lVal);
-}
-
-long CGetSetOptions::GetTripPasteCount()
-{
-	return GetProfileLong("TripPastes", 0);
-}
-
-void CGetSetOptions::SetTripDate(long lDate)
-{
-	if(lDate == -1)
-		lDate = (long)CTime::GetCurrentTime().GetTime();
-
-	SetProfileLong("TripDate", lDate);
-}
-
-long CGetSetOptions::GetTripDate()
-{
-	return GetProfileLong("TripDate", 0);
 }
 
 void CGetSetOptions::SetTotalCopyCount(long lVal)

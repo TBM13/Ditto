@@ -151,7 +151,6 @@ void CProcessPaste::MarkAsPasted(bool updateClipOrder)
 
 	CClipIDs& clips = GetClipIDs();
 	
-	CGetSetOptions::SetTripPasteCount(-1);
 	CGetSetOptions::SetTotalPasteCount(-1);
 
 	MarkAsPastedData* pData = new MarkAsPastedData();

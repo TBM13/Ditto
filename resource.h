@@ -259,12 +259,8 @@
 #define IDC_GET_PATH                    1001
 #define IDC_SELECT_SOUND                1002
 #define IDC_SELECT                      1003
-#define IDC_TRIP_COPIES                 1004
-#define IDC_TRIP_PASTES                 1005
-#define IDC_RESET_COUNTS                1006
 #define IDC_ALL_COPIES                  1007
 #define IDC_ALL_PASTES                  1008
-#define IDC_TRIP_DATE                   1009
 #define IDC_EDIT_ALL_DATE               1010
 #define IDC_SAVED_COPIES                1011
 #define IDC_SAVED_COPY_DATA             1012

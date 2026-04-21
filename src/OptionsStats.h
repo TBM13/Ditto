@@ -24,9 +24,6 @@ public:
 	CString	m_eAllCopies;
 	CString	m_eAllPastes;
 	CString	m_eAllDate;
-	CString	m_eTripCopies;
-	CString	m_eTripDate;
-	CString	m_eTripPastes;
 	CString	m_eSavedCopies;
 	CString	m_eSavedCopyData;
 	CString	m_eDatabaseSize;
@@ -51,7 +48,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(COptionsStats)
 	virtual BOOL OnInitDialog();
-	afx_msg void OnResetCounts();
 	afx_msg void OnRemoveAll();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

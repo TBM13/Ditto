@@ -30,9 +30,6 @@ COptionsStats::COptionsStats()
 	m_eAllCopies = _T("");
 	m_eAllPastes = _T("");
 	m_eAllDate = _T("");
-	m_eTripCopies = _T("");
-	m_eTripDate = _T("");
-	m_eTripPastes = _T("");
 	m_eSavedCopies = _T("");
 	m_eSavedCopyData = _T("");
 	m_eDatabaseSize = _T("");
@@ -50,9 +47,6 @@ void COptionsStats::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_ALL_COPIES, m_eAllCopies);
 	DDX_Text(pDX, IDC_ALL_PASTES, m_eAllPastes);
 	DDX_Text(pDX, IDC_EDIT_ALL_DATE, m_eAllDate);
-	DDX_Text(pDX, IDC_TRIP_COPIES, m_eTripCopies);
-	DDX_Text(pDX, IDC_TRIP_DATE, m_eTripDate);
-	DDX_Text(pDX, IDC_TRIP_PASTES, m_eTripPastes);
 	DDX_Text(pDX, IDC_SAVED_COPIES, m_eSavedCopies);
 	DDX_Text(pDX, IDC_SAVED_COPY_DATA, m_eSavedCopyData);
 	DDX_Text(pDX, IDC_DATABASE_SIZE, m_eDatabaseSize);
@@ -65,7 +59,6 @@ void COptionsStats::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(COptionsStats, CPropertyPage)
 	//{{AFX_MSG_MAP(COptionsStats)
-	ON_BN_CLICKED(IDC_RESET_COUNTS, OnResetCounts)
 	ON_BN_CLICKED(IDC_REMOVE_ALL, OnRemoveAll)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -83,11 +76,6 @@ BOOL COptionsStats::OnInitDialog()
 
 	m_eAllCopies.Format(_T("%d"), CGetSetOptions::GetTotalCopyCount());
 	m_eAllPastes.Format(_T("%d"), CGetSetOptions::GetTotalPasteCount());
-
-	COleDateTime time2((time_t)CGetSetOptions::GetTripDate());
-	m_eTripDate = time2.Format();
-	m_eTripCopies.Format(_T("%d"), CGetSetOptions::GetTripCopyCount());
-	m_eTripPastes.Format(_T("%d"), CGetSetOptions::GetTripPasteCount());
 
 	m_eClipsSent.Format(_T("%d"), theApp.m_lClipsSent);
 	m_eClipsRecieved.Format(_T("%d"), theApp.m_lClipsRecieved);
@@ -118,19 +106,6 @@ BOOL COptionsStats::OnInitDialog()
 	theApp.m_Language.UpdateOptionStats(this);
 		
 	return TRUE;
-}
-
-void COptionsStats::OnResetCounts() 
-{
-	CGetSetOptions::SetTripCopyCount(0);
-	CGetSetOptions::SetTripPasteCount(0);
-	CGetSetOptions::SetTripDate(0);
-
-	m_eTripDate.Empty();
-	m_eTripCopies.Empty();
-	m_eTripPastes.Empty();
-
-	UpdateData(FALSE);
 }
 
 void COptionsStats::OnRemoveAll() 

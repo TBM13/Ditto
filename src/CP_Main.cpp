@@ -744,7 +744,6 @@ void CCP_MainApp::OnCopyCompleted(long lLastID, int count, CopyReasonEnum::CopyR
 	}
 
 	// update copy statistics
-	CGetSetOptions::SetTripCopyCount(-count);
 	CGetSetOptions::SetTotalCopyCount(-count);
 
 	if(m_CopyBuffer.Active())
