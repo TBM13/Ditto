@@ -171,7 +171,6 @@ protected:
 	bool MouseInScrollBarArea(CRect crWindow, CPoint point);
 	BOOL DrawRtfText(int nItem, CRect &crRect, CDC *pDC);
 	void StopHideScrollBarTimer();
-	bool IsBinaryString(const CString& str);
 	bool IsHexString(const CString& str);
     COLORREF HslToRgb(double h, double s, double l);
 		
@@ -208,7 +207,6 @@ protected:
 	//{{AFX_MSG(CQListCtrl)
 	afx_msg void OnKeydown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnCustomdrawList(NMHDR* pNMHDR, LRESULT* pResult);
-	void DrawDecimalValues(CString& csText, CRect& rcText, CDC* pDC);
 	void DrawCopiedColorCode(CString& csText, CRect& rcText, CDC* pDC);
 	afx_msg void OnSysKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);

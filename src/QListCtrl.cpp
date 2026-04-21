@@ -550,7 +550,6 @@ void CQListCtrl::OnCustomdrawList(NMHDR* pNMHDR, LRESULT* pResult)
 				drawInGroupIcon = false;
 		}
 
-		DrawDecimalValues(csText, rcText, pDC);
 		DrawCopiedColorCode(csText, rcText, pDC);
 
 		DrawBitMap(nItem, rcText, pDC, csText);
@@ -658,20 +657,6 @@ void CQListCtrl::OnCustomdrawList(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 }
 
-// Helper function implementation to check for valid binary characters
-bool CQListCtrl::IsBinaryString(const CString& str)
-{
-	if (str.IsEmpty()) {
-		return false;
-	}
-	for (int i = 0; i < str.GetLength(); ++i) {
-		if (str[i] != '0' && str[i] != '1') {
-			return false;
-		}
-	}
-	return true;
-}
-
 
 // Helper function implementation to check for valid hex characters
 bool CQListCtrl::IsHexString(const CString& str)
@@ -685,77 +670,6 @@ bool CQListCtrl::IsHexString(const CString& str)
 		}
 	}
 	return true;
-}
-
-void CQListCtrl::DrawDecimalValues(CString& csText, CRect& rcText, CDC* pDC)
-{
-	// 1. Initial Cleaning (Remove specific surrounding chars and leading/trailing whitespace)
-	CString cleanedText = csText;
-	cleanedText.Trim(_T("»")); // Remove potential ditto mark first
-	cleanedText.Trim();        // Trim leading/trailing whitespace
-	cleanedText.TrimRight(_T(";")); // Remove trailing semicolon
-	cleanedText.Trim();        // Trim again in case semicolon had spaces after it
-
-	// Store original case potentially for display, but use lower for parsing
-	CString originalCleanedText = cleanedText;
-	CString parseText = cleanedText;
-	parseText.MakeLower(); // Use lower case for keyword matching ('0b', '0x')
-
-	// 2. Helper function to draw the decimal values box
-	auto DrawDecimalsBox = [&](unsigned long long decimalValue)
-		{
-			CRect clientRect;
-			GetClientRect(&clientRect);
-
-			CRect rect(rcText);
-			CSize textSize = pDC->GetTextExtent(csText);
-			rect.right = clientRect.Width();
-			rect.left = rect.right - m_windowDpi->Scale(textSize.cx + 15);
-			// I don't really know how to right-align the text but who cares
-
-			CString valueStr;
-			valueStr.Format(_T("%llu"), decimalValue);
-			pDC->DrawText(valueStr, rect, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
-
-			// Restore original (potentially mixed-case) text for drawing
-			csText = originalCleanedText;
-		};
-
-	// 3. --- Number Parsing ---
-	bool isBinary = false;
-	bool isHex = false;
-
-	if (parseText.GetLength() >= 2 && (parseText.Left(2) == _T("0x") || parseText.Left(2) == _T("0b")))
-	{
-		isHex = parseText.Left(2) == _T("0x");
-		isBinary = parseText.Left(2) == _T("0b");
-		parseText = parseText.Mid(2); // Get part after prefix
-	}
-
-	isHex = isHex && IsHexString(parseText);
-	isBinary = isBinary && IsBinaryString(parseText);
-
-	if (isBinary)
-	{
-		unsigned long long decimalValue = 0;
-		for (int i = 0; i < parseText.GetLength(); ++i)
-		{
-			if (parseText[i] == '1')
-			{
-				decimalValue += (1LL << (parseText.GetLength() - 1 - i));
-			}
-		}
-
-		DrawDecimalsBox(decimalValue);
-		return;
-	}
-	else if (isHex)
-	{
-		unsigned long long decimalValue;
-		swscanf_s(parseText, _T("%llx"), &decimalValue);
-		DrawDecimalsBox(decimalValue);
-		return;
-	}
 }
 
 // Helper function implementation for HSL to RGB conversion
