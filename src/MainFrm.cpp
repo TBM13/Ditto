@@ -39,7 +39,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(ID_FIRST_SHOWQUICKPASTE, OnFirstShowquickpaste)
 	ON_COMMAND(ID_FIRST_TOGGLECONNECTCV, OnFirstToggleConnectCV)
 	ON_UPDATE_COMMAND_UI(ID_FIRST_TOGGLECONNECTCV, OnUpdateFirstToggleConnectCV)
-	ON_COMMAND(ID_FIRST_HELP, OnFirstHelp)
 	//}}AFX_MSG_MAP
 	ON_MESSAGE(WM_HOTKEY, OnHotKey)
 	ON_MESSAGE(WM_SHOW_TRAY_ICON, OnShowTrayIcon)
@@ -1143,11 +1142,6 @@ CString WndName(HWND hParent)
     }
 
     return cWindowText;
-}
-
-void CMainFrame::OnFirstHelp()
-{
-    CHyperLink::GotoURL(_T("https://github.com/sabrogden/Ditto/wiki"), SW_SHOW);
 }
 
 void CMainFrame::ShowEditWnd(CClipIDs& Ids)
