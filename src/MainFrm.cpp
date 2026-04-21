@@ -37,8 +37,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(ID_FIRST_EXIT, OnFirstExit)
 	ON_WM_TIMER()
 	ON_COMMAND(ID_FIRST_SHOWQUICKPASTE, OnFirstShowquickpaste)
-	ON_COMMAND(ID_FIRST_TOGGLECONNECTCV, OnFirstToggleConnectCV)
-	ON_UPDATE_COMMAND_UI(ID_FIRST_TOGGLECONNECTCV, OnUpdateFirstToggleConnectCV)
 	//}}AFX_MSG_MAP
 	ON_MESSAGE(WM_HOTKEY, OnHotKey)
 	ON_MESSAGE(WM_SHOW_TRAY_ICON, OnShowTrayIcon)
@@ -900,16 +898,6 @@ LRESULT CMainFrame::OnShowTrayIcon(WPARAM wParam, LPARAM lParam)
 void CMainFrame::OnFirstShowquickpaste()
 {
     m_quickPaste.ShowQPasteWnd(this, false, false, FALSE);
-}
-
-void CMainFrame::OnFirstToggleConnectCV()
-{
-    theApp.ToggleConnectCV();
-}
-
-void CMainFrame::OnUpdateFirstToggleConnectCV(CCmdUI *pCmdUI)
-{
-    theApp.UpdateMenuConnectCV(pCmdUI->m_pMenu, ID_FIRST_TOGGLECONNECTCV);
 }
 
 LRESULT CMainFrame::OnClipboardCopied(WPARAM wParam, LPARAM lParam)

@@ -106,8 +106,6 @@ protected:
     afx_msg void OnDrawClipboard();
     afx_msg void OnTimer(UINT_PTR nIDEvent);
     afx_msg void OnFirstShowquickpaste();
-    afx_msg void OnFirstToggleConnectCV();
-    afx_msg void OnUpdateFirstToggleConnectCV(CCmdUI *pCmdUI);
     //}}AFX_MSG
     afx_msg LRESULT OnHotKey(WPARAM wParam, LPARAM lParam);
 	void ShowQPasteWithActiveWindowCheck();

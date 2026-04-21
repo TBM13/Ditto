@@ -119,7 +119,6 @@ BEGIN_MESSAGE_MAP(CQPasteWnd, CWndEx)
 	ON_COMMAND(ID_MENU_POSITIONING_ATPREVIOUSPOSITION, OnMenuPositioningAtpreviousposition)
 	ON_COMMAND(ID_MENU_OPTIONS, OnMenuOptions)
 	ON_COMMAND(ID_MENU_EXITPROGRAM, OnMenuExitprogram)
-	ON_COMMAND(ID_MENU_TOGGLECONNECTCV, OnMenuToggleConnectCV)
 	ON_COMMAND(ID_MENU_PROPERTIES, OnMenuProperties)
 	ON_WM_CLOSE()
 	ON_NOTIFY(LVN_BEGINDRAG, ID_LIST_HEADER, OnBegindrag)
@@ -309,7 +308,6 @@ BEGIN_MESSAGE_MAP(CQPasteWnd, CWndEx)
 	ON_UPDATE_COMMAND_UI(ID_SENDTO_PROMPTFORNAME, &CQPasteWnd::OnUpdateSendtoPromptforname)
 	ON_COMMAND(ID_IMPORT_IMPORTCOPIEDFILE, &CQPasteWnd::OnImportImportcopiedfile)
 	ON_UPDATE_COMMAND_UI(ID_IMPORT_IMPORTCOPIEDFILE, &CQPasteWnd::OnUpdateImportImportcopiedfile)
-	ON_UPDATE_COMMAND_UI(32775, &CQPasteWnd::OnUpdate32775)
 	ON_COMMAND_RANGE(CustomFriendStartId, (CustomFriendStartId + MaxCustomFriends + 1), OnCustomSendToFriend)
 	ON_COMMAND_RANGE(ChaiScriptMenuStartId, (ChaiScriptMenuStartId + MaxChaiScripts + 1), OnChaiScriptPaste)
 	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
@@ -1820,8 +1818,6 @@ void CQPasteWnd::SetMenuChecks(CMenu* pMenu)
 		pMenu->CheckMenuItem(nCheckID, MF_CHECKED);
 	}
 
-	theApp.UpdateMenuConnectCV(pMenu, ID_MENU_TOGGLECONNECTCV);
-
 	if (CGetSetOptions::GetShowTextForFirstTenHotKeys())
 	{
 		pMenu->CheckMenuItem(ID_MENU_FIRSTTENHOTKEYS_SHOWHOTKEYTEXT, MF_CHECKED);
@@ -2087,21 +2083,6 @@ void CQPasteWnd::OnMenuOptions()
 void CQPasteWnd::OnMenuExitprogram()
 {
 	::SendMessage(theApp.m_MainhWnd, WM_CLOSE, 0, 0);
-}
-
-void CQPasteWnd::OnMenuToggleConnectCV()
-{
-	this->DoAction(ActionEnums::TOGGLE_CLIPBOARD_CONNECTION);
-}
-
-void CQPasteWnd::OnUpdate32775(CCmdUI* pCmdUI)
-{
-	if (!pCmdUI->m_pMenu)
-	{
-		return;
-	}
-
-	UpdateMenuShortCut(pCmdUI, ActionEnums::TOGGLE_CLIPBOARD_CONNECTION);
 }
 
 void CQPasteWnd::OnMenuProperties()
@@ -3349,9 +3330,6 @@ bool CQPasteWnd::DoAction(CAccel a)
 		break;
 	case ActionEnums::SAVE_CF_HDROP_FIlE_DATA:
 		ret = DoActionSaveCF_HDROP_FileData();
-		break;
-	case ActionEnums::TOGGLE_CLIPBOARD_CONNECTION:
-		ret = DoActionToggleClipboardConnection();
 		break;
 	case ActionEnums::MOVE_SELECTION_UP:
 		ret = DoActionMoveSelectionUp();
@@ -5172,14 +5150,6 @@ bool CQPasteWnd::DoActionPromptSendToFriend()
 	}
 
 	m_bHideWnd = true;
-
-	return true;
-}
-
-bool CQPasteWnd::DoActionToggleClipboardConnection()
-{
-	theApp.ToggleConnectCV();
-	UpdateStatus();
 
 	return true;
 }
